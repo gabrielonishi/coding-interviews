@@ -1,4 +1,6 @@
 def print_indices_and_elements(elements) -> None:
+    for i, j in enumerate(elements):
+        print(i, j)
     pass
 
 

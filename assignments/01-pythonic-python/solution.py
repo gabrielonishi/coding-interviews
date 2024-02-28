@@ -33,7 +33,7 @@ def str_lengths(strings: list[str]) -> list[int]:
 
 
 def get_fibonacci_type(version: int) -> str:
-    return ''
+    return 'generator' if version == 1 else 'list'
 
 
 def difference_between_fibonacci1_and_fibonacci2() -> str:

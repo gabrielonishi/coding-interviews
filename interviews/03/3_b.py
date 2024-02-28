@@ -1,0 +1,72 @@
+'''
+Problem 3.5 - Cracking the Coding Interview
+
+Write a program to sort a stack such that the smallest items are on the top. The stack supports the following operations: push, pop, peek, and is_empty.
+
+Constraints
+
+    - You may not copy the elements into any other data structure (such as an array);
+    - You can use an additional temporary stack, but not two.
+
+'''
+
+class Stack:
+    def __init__(self):
+        self._items = []
+
+    def push(self, value):
+        self._items.append(value)
+
+    def pop(self):
+        return self._items.pop()
+
+    def peek(self):
+        return self._items[-1]
+
+    def is_empty(self):
+        return len(self) == 0
+
+    def __len__(self):
+        return len(self._items)
+
+
+def sort_stack(stack: Stack) -> None:
+    '''
+    Ideia: utilizar uma pilha de suporte e fazer o sorting contrário
+    (maiores no topo) enquanto monta ela
+    '''
+
+    if stack.is_empty(): return
+
+    # Adiciona primeiro elemento em suuport
+    support = Stack()
+    support.push(stack.pop())
+
+    while not stack.is_empty():
+        element = stack.pop()
+
+        # Se o elemento do topo for menor, colocar o maior em cima
+        if support.peek() < element:
+            support.push(element)
+        # Caso contrário, ir desmontando a de suporte até encontrar
+        # elemento menor
+        else:
+            i = 0
+            while True:
+                stack.push(support.pop())
+                i += 1
+                
+                if support.is_empty():
+                    support.push(element)
+                    break
+                
+                if support.peek() < element:
+                    support.push(element)
+                    break
+            
+            for _ in range(i):
+                support.push(stack.pop())
+
+    while not support.is_empty():
+        stack.push(support.pop())
+

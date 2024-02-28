@@ -5,7 +5,7 @@ def print_indices_and_elements(elements) -> None:
 
 
 def get_even_numbers_between(start: int, end: int) -> list[int]:
-    return []
+    return [i for i in range(start, end) if i%2 == 0]
 
 
 def get_char_set_from(s: str) -> set[str]:

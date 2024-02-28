@@ -56,6 +56,10 @@ def sort_stack(stack: Stack) -> None:
                 stack.push(support.pop())
                 i += 1
                 
+                if support.is_empty():
+                    support.push(element)
+                    break
+                
                 if support.peek() < element:
                     support.push(element)
                     break

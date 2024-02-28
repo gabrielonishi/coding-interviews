@@ -21,7 +21,7 @@ def filter_even_from(numbers: list[int]) -> list[int]:
 
 
 def get_number_or_minus_one(n: int) -> int:
-    return n
+    return n if n%2 == 0 else -1
 
 
 def transform_multiples_of_5(numbers: list[int]) -> list[int]:

@@ -5,15 +5,15 @@ def print_indices_and_elements(elements) -> None:
 
 
 def get_even_numbers_between(start: int, end: int) -> list[int]:
-    return [i for i in range(start, end) if i%2 == 0]
+    return [i for i in range(start, end + 1) if i%2 == 0]
 
 
 def get_char_set_from(s: str) -> set[str]:
-    return set()
+    return {i for i in s}
 
 
 def get_perfect_squares_between(start: int, end: int) -> dict[int,int]:
-    return {}
+    return {i : i ** 0.5 for i in range(start, end + 1) if i**0.5 == int(i**0.5)}
 
 
 def filter_even_from(numbers: list[int]) -> list[int]:

@@ -29,7 +29,7 @@ def transform_multiples_of_5(numbers: list[int]) -> list[int]:
 
 
 def str_lengths(strings: list[str]) -> list[int]:
-    return []
+    return [len(i) for i in strings]
 
 
 def get_fibonacci_type(version: int) -> str:

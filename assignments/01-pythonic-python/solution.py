@@ -25,7 +25,7 @@ def get_number_or_minus_one(n: int) -> int:
 
 
 def transform_multiples_of_5(numbers: list[int]) -> list[int]:
-    return []
+    return [i if i%2 == 0 else -1 for i in numbers if i%5 == 0]
 
 
 def str_lengths(strings: list[str]) -> list[int]:

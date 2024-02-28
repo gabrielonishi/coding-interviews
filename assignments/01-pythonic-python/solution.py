@@ -17,7 +17,7 @@ def get_perfect_squares_between(start: int, end: int) -> dict[int,int]:
 
 
 def filter_even_from(numbers: list[int]) -> list[int]:
-    return []
+    return [i for i in numbers if i%2 == 0]
 
 
 def get_number_or_minus_one(n: int) -> int:

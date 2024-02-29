@@ -63,7 +63,14 @@ class SkipIterator:
 
 
 def my_avg(e1: float, e2: float, *others: tuple[float]) -> float:
-    return -1
+    sum = e1 + e2
+    elements = 2
+    
+    for element in others:
+        sum += element
+        elements += 1
+        
+    return sum/elements
 
 
 def keys_with_different_value() -> list[int]:

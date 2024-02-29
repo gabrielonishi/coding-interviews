@@ -37,13 +37,29 @@ def get_fibonacci_type(version: int) -> str:
 
 
 def difference_between_fibonacci1_and_fibonacci2() -> str:
-    return ''
+    return '''Fibonnaci 1 uses a generator, while fibonacci 2 saves the elements calculate d on a list. Fibonacci 1 uses
+              less memory, but takes more time to return a certain value'''
 
 
 class SkipIterator:
     def __init__(self, elements):
+        
         self.elements = elements
+        
+        if elements is not None: 
+            self.next_position = 0
         # You can add more code here if you need
+    
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.next_position < len(self.elements):
+            retval = self.elements[self.next_position]
+            self.next_position += 2
+            return retval
+        
+        raise StopIteration()
 
 
 def my_avg(e1: float, e2: float, *others: tuple[float]) -> float:

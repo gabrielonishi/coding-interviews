@@ -120,4 +120,4 @@ def global_var_func2(n: int):
 
 
 def value_is_None(value):
-    return value == None
+    return value is None

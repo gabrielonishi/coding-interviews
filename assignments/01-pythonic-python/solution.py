@@ -115,6 +115,7 @@ def global_var_func1(n: int):
 
 def global_var_func2(n: int):
     for i in range(n):
+        global global_var
         global_var += i
         print(global_var)
 

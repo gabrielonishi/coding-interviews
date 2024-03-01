@@ -74,13 +74,19 @@ def my_avg(e1: float, e2: float, *others: tuple[float]) -> float:
 
 
 def keys_with_different_value() -> list[int]:
-    return []
+    a = dict(zip(range(10), range(10)))
+    b = dict(zip(range(5, 15), range(15, 25)))
+    
+    c_original = {**a, **b}
+    c_reversed = {**b, **a}
+        
+    return [key for key in c_original if c_original[key] != c_reversed[key]]
+
 
 
 def print_out_in(*numbers) -> None:
     while len(numbers) > 1:
-        # You should add code here and remove the break
-        break
+        return numbers[0]
 
     if numbers:
         # You should add code here

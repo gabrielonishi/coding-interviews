@@ -86,11 +86,12 @@ def keys_with_different_value() -> list[int]:
 
 def print_out_in(*numbers) -> None:
     while len(numbers) > 1:
-        return numbers[0]
-
+        start, *inner, end = numbers
+        numbers = inner
+        print(start, end)
+        
     if numbers:
-        # You should add code here
-        pass
+        print(numbers[0])
 
 
 def append_range(start: int, end: int, step: int=1, to: list[int]=[]):

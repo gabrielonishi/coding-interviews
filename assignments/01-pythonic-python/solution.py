@@ -94,8 +94,11 @@ def print_out_in(*numbers) -> None:
         print(numbers[0])
 
 
-def append_range(start: int, end: int, step: int=1, to: list[int]=[]):
+def append_range(start: int, end: int, step: int=1, to: list[int]=None):
+    
     # You may add code here
+    if to is None:
+        to = list()
 
     # Don't change the code below
     for i in range(start, end, step):

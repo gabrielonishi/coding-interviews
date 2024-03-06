@@ -1,0 +1,51 @@
+Problem
+
+Problem 4.6 - Cracking the Coding Interview
+
+Write an algorithm to find the "next" node (i.e., in-order successor) of a given node 
+in a binary search tree. You may assume that each node has a link to its parent.
+
+Definitions
+
+    Binary Search Tree: a binary tree for which the following is valid for all nodes: 
+    the value in the node is greater than all values on the left sub-tree and less 
+    than or equal to all values in the right sub-tree.
+
+EXEMPLO
+
+              5
+        3           7
+    2      4     6      8
+
+class TreeNode:
+    def __init__(self, value=None, left=None, right=None, parent=None):
+        self.value = value
+        self.left = left
+        self.right = right
+        self.parent = parent
+
+def find_father(node: TreeNode, target: int) -> TreeNode:
+    if node.parent is None:
+        return None
+    elif node.parent.value == target:
+        return node.parent
+    else:
+        return find_father(node=node.parent, target=target)
+
+def find_son(node: TreeNode, target: int) -> TreeNode: 
+    if node.right is None:
+        return None
+    elif node.right.value == target:
+        return node.right
+    else:
+        return find_son(node.right, target)
+
+def in_order_succ(node: TreeNode) -> TreeNode:
+    
+    target = node.value + 1
+
+    if find_father(node, target) is None:
+        return find_son(node, target)
+    
+
+    return None

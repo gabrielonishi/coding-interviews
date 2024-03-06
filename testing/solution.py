@@ -1,73 +1,50 @@
 '''
-Problem 3.5 - Cracking the Coding Interview
+Problem 4.6 - Cracking the Coding Interview
 
-Write a program to sort a stack such that the smallest items are on the top. The stack supports the following operations: push, pop, peek, and is_empty.
+Write an algorithm to find the "next" node (i.e., in-order successor) of a given node 
+in a binary search tree. You may assume that each node has a link to its parent.
 
-Constraints
+Definitions
 
-    - You may not copy the elements into any other data structure (such as an array);
-    - You can use an additional temporary stack, but not two.
-
+    Binary Search Tree: a binary tree for which the following is valid for all nodes: 
+    the value in the node is greater than all values on the left sub-tree and less 
+    than or equal to all values in the right sub-tree.
 '''
 
-class Stack:
-    def __init__(self):
-        self._items = []
+class TreeNode:
+    def __init__(self, value=None, left=None, right=None, parent=None):
+        self.value = value
+        self.left = left
+        self.right = right
+        self.parent = parent
 
-    def push(self, value):
-        self._items.append(value)
+def find_father(node: TreeNode, target: int) -> TreeNode:
+    if node is None: 
+        return None
+    elif node.value == target:
+        return node
+    else:
+        return find_father(node.parent, target)
 
-    def pop(self):
-        return self._items.pop()
+def find_son(node: TreeNode, target: int) -> TreeNode: 
+    if node is None:
+        return None
+    elif node.value == target:
+        return node
+    elif target > node.value:
+        return find_son(node.right, target)
+    else:
+        return find_son(node.left, target)
 
-    def peek(self):
-        return self._items[-1]
+def in_order_succ(node: TreeNode) -> TreeNode:
+    
+    if node is None: return None
+    
+    target = node.value + 1
 
-    def is_empty(self):
-        return len(self) == 0
-
-    def __len__(self):
-        return len(self._items)
-
-
-def sort_stack(stack: Stack) -> None:
-    '''
-    Ideia: utilizar uma pilha de suporte e fazer o sorting contrário
-    (maiores no topo) enquanto monta ela
-    '''
-
-    if stack.is_empty(): return
-
-    # Adiciona primeiro elemento em suuport
-    support = Stack()
-    support.push(stack.pop())
-
-    while not stack.is_empty():
-        element = stack.pop()
-
-        # Se o elemento do topo for menor, colocar o maior em cima
-        if support.peek() < element:
-            support.push(element)
-        # Caso contrário, ir desmontando a de suporte até encontrar
-        # elemento menor
-        else:
-            i = 0
-            while True:
-                stack.push(support.pop())
-                i += 1
-                
-                if support.is_empty():
-                    support.push(element)
-                    break
-                
-                if support.peek() < element:
-                    support.push(element)
-                    break
-            
-            for _ in range(i):
-                support.push(stack.pop())
-
-    while not support.is_empty():
-        stack.push(support.pop())
-
-            
+    father = find_father(node, target) 
+    
+    if father is not None:
+        return father
+    
+    return find_son(node, target)

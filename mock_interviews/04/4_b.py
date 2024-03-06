@@ -19,26 +19,32 @@ class TreeNode:
         self.parent = parent
 
 def find_father(node: TreeNode, target: int) -> TreeNode:
-    if node.parent is None:
+    if node is None: 
         return None
-    elif node.parent.value == target:
-        return node.parent
+    elif node.value == target:
+        return node
     else:
-        return find_father(node=node.parent, target=target)
+        return find_father(node.parent, target)
 
 def find_son(node: TreeNode, target: int) -> TreeNode: 
-    if node.right is None:
+    if node is None:
         return None
-    elif node.right.value == target:
-        return node.right
-    else:
+    elif node.value == target:
+        return node
+    elif target > node.value:
         return find_son(node.right, target)
+    else:
+        return find_son(node.left, target)
 
 def in_order_succ(node: TreeNode) -> TreeNode:
     
+    if node is None: return None
+    
     target = node.value + 1
 
-    if find_father(node, target) is None:
-        return find_son(node, target)
+    father = find_father(node, target) 
     
-    return None
+    if father is not None:
+        return father
+    
+    return find_son(node, target)

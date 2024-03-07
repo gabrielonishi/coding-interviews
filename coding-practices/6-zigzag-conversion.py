@@ -29,6 +29,9 @@ position = 4
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
+        
+        if len(s) == 0 or numRows == 1: return s
+        
         matrix = [[] for j in range(numRows)]
         current_y = 0
         current_x = 0

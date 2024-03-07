@@ -10,7 +10,7 @@ class Solution:
         if len(matrix) == 0: return matrix
         
         n = len(matrix)
-        temp_matrix = [[None for i in range(n)] for j in range(n)]
+        temp_matrix = [ [] for i in range(n)]
 
         for i in range(n):
             x = n - 1
@@ -18,8 +18,8 @@ class Solution:
                 temp_matrix[i].append(matrix[x][i])
                 x -= 1
         
-        for row in matrix:
-            for i in range(n):
-                matrix[row][i] = temp_matrix[row][i]
+        for i in range(n):
+            for j in range(n):
+                matrix[i][j] = temp_matrix[i][j]
 
     

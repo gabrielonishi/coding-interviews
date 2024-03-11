@@ -76,12 +76,19 @@ def pre_order_iterative(root: TreeNode) -> None:
 
 
 def in_order_recursive(root: TreeNode) -> None:
-    pass
+    if root is None:
+        return
+    in_order_recursive(root.left)
+    print(root.value)
+    in_order_recursive(root.right)
 
 
 def post_order_recursive(root: TreeNode) -> None:
-    pass
-
+    if root is None:
+        return
+    post_order_recursive(root.left)
+    post_order_recursive(root.right)
+    print(root.value)
 
 def breadth_first(root: TreeNode) -> None:
     pass

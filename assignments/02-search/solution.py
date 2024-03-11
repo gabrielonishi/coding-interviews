@@ -91,8 +91,12 @@ def post_order_recursive(root: TreeNode) -> None:
     print(root.value)
 
 def breadth_first(root: TreeNode) -> None:
-    pass
-
+    stack = [root]
+    while len(stack) > 0:
+        node = stack.pop()
+        print(node.value)
+        stack.append(node.right)
+        stack.append(node.left)
 
 def graph_depth_first_recursive(node: GraphNode, visited=None) -> None:
     if visited is None:

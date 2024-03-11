@@ -60,7 +60,19 @@ def pre_order_recursive(root: TreeNode) -> None:
     pre_order_recursive(root.right)
 
 def pre_order_iterative(root: TreeNode) -> None:
-    pass
+    pilha = list()
+    
+    while root is not None:
+        print(root.value)
+        pilha.append(root.right)
+        root = root.left
+    
+    while pilha:
+        root = pilha.pop()
+        while root is not None:
+            print(root.value)
+            pilha.append(root.right)
+            root = root.left
 
 
 def in_order_recursive(root: TreeNode) -> None:

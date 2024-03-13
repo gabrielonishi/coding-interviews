@@ -134,4 +134,16 @@ def graph_depth_first_iterative(node: GraphNode) -> None:
     
 
 def graph_breadth_first(node: GraphNode) -> None:
-    pass
+    if node is None: return
+
+    visited = set()
+    fila = [node]
+    
+    while fila:
+        this_node = fila.pop(0)
+        print(this_node.value)
+        visited.add(this_node)
+        for adj in this_node.adjacent:
+            if adj not in visited and adj not in fila:
+                fila.append(adj)
+    

@@ -1,0 +1,31 @@
+Problem
+
+Question 5.7 - Cracking the Coding Interview
+
+Pairwise Swap
+
+Write a program to swap odd and even bits in an integer with as few instructions as possible 
+(e.g., bit 0 and bit 1 are swapped, bit 2 and bit 3 are swapped, and so on).
+
+number = 1001101
+return = 1001110
+
+6 5 4 3 2 1 0   --->   6 5 4 3 2 1 0
+
+1 0 0 1 1 0 1   --->   1 0 0 1 1 1 0
+
+Os pares tem que ir pra esquerda, os ímpares pra direita
+
+Ideia: 
+    - impares = shiftar pra esquerda e fazer mascara com impares
+    - pares = shiftar pra direita e fazer mascara com os pares
+    - somar pares e impares
+
+Impares: 0 = 0 | 1 0 = 2 | 1 0 1 0 = 10 | 1 0 1 0 1 0 = 42 --> num = 2 + 8 + 32 + 128... 
+P.A -> i_n = 2 + 2^(n+3) = 
+Pares:   0 1 0 1 0 1
+
+
+to_right = number >> 1
+to_left = number << 1
+even_mask =

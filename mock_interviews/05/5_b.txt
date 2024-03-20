@@ -29,3 +29,14 @@ Pares:   0 1 0 1 0 1
 to_right = number >> 1
 to_left = number << 1
 even_mask =
+
+ex = 0 1 1 0 = 6
+r  = 1 0 0 1 = 9
+
+to_right = 0 0 1 1
+to_left  = 0 0 1 0
+odd_mask = 0 1 0 1
+even_msk = 1 0 1 0
+
+to_right + even = 0 0 0 1
+to_left + odd   = 0 0 1 0

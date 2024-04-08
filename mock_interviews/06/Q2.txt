@@ -1,0 +1,18 @@
+Question 2: Jugs of Water
+
+Question 6.5 - Cracking the Coding Interview
+
+You have a five liter jug, a three liter jug, and an unlimited supply 
+of water (but no measuring cups). How would you come up with exactly 
+four liters of water? Note that the jugs are oddly shaped, such that 
+filling up exactly "half" of the jug would be impossible.
+
+Steps:
+ - Fill 3L jug
+ - Pour 3L in 5L jug
+ - Fill 3L jug
+ - Pour 2L in 5L jug (filling 5L jug and having 1L remaining in small jug)
+ - Empty 5L jug
+ - Pour 1L in 5L jug
+ - Fill 3L jug
+ - Pour 3L in 5L jug

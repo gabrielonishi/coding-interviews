@@ -1,0 +1,29 @@
+Question 3: The Egg Drop Problem
+
+Question 6.8 - Cracking the Coding Interview
+
+There is a building of 100 floors. If an egg drops from 
+the Nth floor or above, it will break. If it's dropped from 
+any floor below, it will not break. You're given two eggs. 
+Find N, while minimizing the number of drops for the worst case.
+
+Solutions:
+ - Brute force: 100 drops
+ - Binary search: 50 drops
+ - Going from 10 in 10 floors
+   Worst case scenario is breaking only on the 100th floor and
+   having to go from floor to floor starting from the 91th
+   Worst case: 19 drops
+
+Worst case definition:
+ From the moment an egg breaks, you need to go from the last floor
+ you tested, going up one floor at a time
+ The worst case scenario is going until the 100th floor
+
+ If you start at a floor x, worst case scenario is:
+ 100 / x + (x - 1)
+
+ However, it doesnt need to be linear.
+ We need to balance amount of drops
+ x + (x-1) + (x-2) ... + 1 > 100
+ 14

@@ -1,0 +1,85 @@
+Problem
+
+Question 8.9 - Cracking the Coding Interview
+Parens
+
+Implement an algorithm to print all valid (e.g., properly opened and closed) 
+combinations of n pairs of parentheses.
+
+Examples
+
+Input: 3
+
+Output: ((())), (()()), (())(), ()(()), ()()()
+
+Com 1: 1 perm
+    ()
+
+Com 2: 2 perm
+    ()()
+    (())
+
+Com 3: 4 perm
+    ()()()
+    (())()
+    ()(())
+    ((()))
+
+    (()()
+    (())
+
+Com 4: 12 perm
+    ()()()()
+    (())()()
+    ()(())()
+    ()()(())
+    (()())()
+    ((()))()
+    ()((()))
+    ()(()())
+    (()()())
+    ((())())
+    (()(()))
+    (((())))
+
+Lógica:
+    Para cada novo par de parênteses - 1, existe a possibilidade de
+    permutar a quantidade de vezes anterior
+
+    Os parênteses iniciais funcionam como "casas", dentro das quais
+    pode-se permutar
+
+    Para 2, fica uma casa para se permutar uma vez
+    Para 3, ficam duas casas em que se podem permutar de duas formas
+    em cada
+
+Regra:
+    - Para todo parênteses que abre
+
+def generate_parens(n: int) -> list[str]:
+    """
+    Returns list of all valid parentheses combinations
+
+    Args:
+        n(int): number of pairs of parentheses
+    
+    Returns:
+        list[str]: list with all combinations
+
+    Examples:
+        >>> generate_parens(3):
+        ["((()))", "(()())", "(())()", "()(())", "()()()"]
+    """
+    
+    permutations = {i : set for i in range(n)}
+
+    permutations[0] = {"()"}
+
+    for i in range(1, n):
+        for possibility in permutations[i]:
+            permutations[i].add("()" + possibility)
+            permutations[i].add("(" + possibility + ")")
+            permutations[i].add(possibility + "()")
+
+    return permutations(n-1)
+

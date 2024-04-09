@@ -80,8 +80,13 @@ def tree_sum(root: TreeNode) -> int:
     """
     returns the sum of the node values of the binary tree.
     """
+    if root is None:
+        return 0
 
-    return 0
+    if root.value is None:
+        return 0
+
+    return root.value + tree_sum(root.left) + tree_sum(root.right)
 
 
 def tree_max(root: TreeNode) -> int:

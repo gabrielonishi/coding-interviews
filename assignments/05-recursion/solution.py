@@ -93,7 +93,11 @@ def tree_max(root: TreeNode) -> int:
     """
     returns the maximum value of the binary tree (it is not sorted in any way).
     """
-    return 0
+    if root is None:
+        return float("-inf")
+    if root.value is None:
+        return float("-inf")
+    return max(root.value, tree_max(root.left), tree_max(root.right))
 
 
 def k_combinations(l: list[int], k: int) -> list[list[int]]:

@@ -58,6 +58,9 @@ def list_sum(l: list[int]) -> int:
     """
     returns the sum of the elements. Must use the method pop and can't use loops (while or for).
     """
+    if len(l) > 0:
+        element = l.pop()
+        return list_sum(l) + element
     return 0
 
 

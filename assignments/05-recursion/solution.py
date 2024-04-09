@@ -70,6 +70,9 @@ def digit_sum(n: int) -> int:
     For example: digit_sum(123) should return 6. Your function can't convert the number to a string. 
     It must use only mathematical operations.
     """
+    if n > 0:
+        print(n % 10)
+        return digit_sum(n//10) + n % 10
     return 0
 
 

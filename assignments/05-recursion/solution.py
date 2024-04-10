@@ -106,7 +106,28 @@ def k_combinations(l: list[int], k: int) -> list[list[int]]:
     Example: for l = [1, 2, 3, 4] and k = 2 your function must return 
     [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]].
     """
-    return []
+    if k == 0:
+        return [[]]  # Base case: if k is 0, return a list containing an empty list
+    if len(l) < k:
+        return []  # If there are fewer elements in the list than required elements in the combination, return an empty list
+
+    result = []
+    first = l[0]
+    rest = l[1:]
+
+    # Get combinations that contain the first element
+    combinations_with_first = k_combinations(rest, k - 1)
+    for combination in combinations_with_first:
+        result.append([first] + combination)
+
+    # Get combinations that don't contain the first element
+    combinations_without_first = k_combinations(rest, k)
+    result.extend(combinations_without_first)
+
+    return result
+
+
+print(k_combinations([1, 2, 3, 4, 5, 6], 3))
 
 
 def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> list[list[int]]:
@@ -115,8 +136,68 @@ def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> list[list[int
     to the first n natural numbers. You can use the kwargs however you see fit.
 
     Example: for k=2 and n=3 your function must return [[1,2],[1,3],[2,3]].
+    k= 2, n = 5
+    n = k = 2
+    [1, 2]
+    n = 3
+    [1, 3]
+    [2, 3]
+    n = 4
+    [1, 4]
+    [2, 4]
+    [3, 4]
+    n = 5
+    [1, 5]
+    [2, 5]
+    [3, 5]
+    [4, 5]
+
+    k = 3, n = 5
+    n = 3
+    [1, 2, 3]
+    n = 4
+    [1, 2, 4]
+    [2, 3, 4]
+    n = 5
+    [1, 2, 5]
+    [2, 3, 5]
+    [3, 4, 5]
+    n = 6
+    [1, 2, 6]
+    [2, 3, 6]
+    [3, 4, 6]
+    [4, 5, 6]
+
+    k = 4, n = 5
+    n = k = 4
+    [1, 2, 3, 4]
+    n = 5
+    [1, 2, 3, 5]
+    [2, 3, 4, 5]
+
     """
-    return []
+
+    if n == k:
+        result = new_seq = [[i for i in range(1, k + 1)]]
+        return result
+
+    result = all_strictly_increasing_sequences(k, n - 1)
+
+    new_seqs = list()
+    # Tem que pegar só os últimos n - k
+    for i in range(n - k - 1, len(result)):
+        seq = result[i]
+        new_seq = seq.copy()
+        new_seq.pop()
+        new_seq.append(n)
+        new_seqs.append(new_seq)
+
+    for new_seq in new_seqs:
+        result.append(new_seq)
+
+    result.append([i for i in range(n - k + 1, n + 1)])
+
+    return result
 
 
 def create_pattern(n: int) -> list[int]:
@@ -132,7 +213,19 @@ def create_pattern(n: int) -> list[int]:
 
     This problem appeared in an interview from Microsoft.
     """
-    return []
+
+    if n <= 0:
+        return [n]
+
+    result = create_pattern(n-5)
+
+    result.insert(0, n)
+    result.append(n)
+
+    return result
+
+
+print(create_pattern(16))
 
 
 def find_middle(head: LinkedListNode) -> LinkedListNode:

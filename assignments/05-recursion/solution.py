@@ -106,25 +106,14 @@ def k_combinations(l: list[int], k: int) -> list[list[int]]:
     Example: for l = [1, 2, 3, 4] and k = 2 your function must return 
     [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]].
     """
-    if k == 0:
-        return [[]]  # Base case: if k is 0, return a list containing an empty list
-    if len(l) < k:
-        return []  # If there are fewer elements in the list than required elements in the combination, return an empty list
+    if len(l) == k:
+        return [l]
 
-    result = []
     first = l[0]
     rest = l[1:]
 
-    # Get combinations that contain the first element
-    combinations_with_first = k_combinations(rest, k - 1)
-    for combination in combinations_with_first:
-        result.append([first] + combination)
-
-    # Get combinations that don't contain the first element
-    combinations_without_first = k_combinations(rest, k)
-    result.extend(combinations_without_first)
-
-    return result
+    combinations = k_combinations(rest, k)
+    for i in range()
 
 
 print(k_combinations([1, 2, 3, 4, 5, 6], 3))
@@ -150,30 +139,6 @@ def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> list[list[int
     [1, 5]
     [2, 5]
     [3, 5]
-    [4, 5]
-
-    k = 3, n = 5
-    n = 3
-    [1, 2, 3]
-    n = 4
-    [1, 2, 4]
-    [2, 3, 4]
-    n = 5
-    [1, 2, 5]
-    [2, 3, 5]
-    [3, 4, 5]
-    n = 6
-    [1, 2, 6]
-    [2, 3, 6]
-    [3, 4, 6]
-    [4, 5, 6]
-
-    k = 4, n = 5
-    n = k = 4
-    [1, 2, 3, 4]
-    n = 5
-    [1, 2, 3, 5]
-    [2, 3, 4, 5]
 
     """
 
@@ -229,18 +194,20 @@ print(create_pattern(16))
 
 
 def find_middle(head: LinkedListNode) -> LinkedListNode:
-    # Don't change this function
-    return find_middle_rec(head)[1]
-
-
-def find_middle_rec(head: LinkedListNode, n: int = 0) -> tuple[int, LinkedListNode]:
     """
     return the node in the middle of the linked list. Examples:
 
     The list 1->2->3->4->5 should return 3;
     The list 1->2->3->4->5->6 should return 4
     """
+    # Don't change this function
+    return find_middle_rec(head)[1]
+
+
+def find_middle_rec(head: LinkedListNode, n: int = 0) -> tuple[int, LinkedListNode]:
     # Hint: n will be used to count nodes from left to right and
     # the number returned by the function will be used to count the nodes from right to left
     # TODO: Implement this function
+
+    last_node, end = find_middle_rec(head.next, n + 1)
     return None, 0

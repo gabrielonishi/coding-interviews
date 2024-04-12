@@ -10,22 +10,15 @@ class TreeNode:
 
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        if not root:
-            return 0
-        return (self.traverse(root, targetSum) +
-                self.pathSum(root.left, targetSum) +
-                self.pathSum(root.right, targetSum))
-
-    def traverse(self, node: TreeNode, targetSum: int, current_sum: int = 0) -> int:
-        if not node:
-            return 0
-
-        current_sum += node.val
-        count = 0
-        if current_sum == targetSum:
-            count += 1
-
-        count += self.traverse(node.left, targetSum, current_sum)
-        count += self.traverse(node.right, targetSum, current_sum)
-
-        return count
+        def traverse(node: TreeNode, currentSum: int = 0, totalPaths: int = 0) -> int:
+            if node is None:
+                return totalPaths
+            currentSum += node.val
+            if currentSum == targetSum:
+                totalPaths += 1
+            totalPaths = traverse(node.left, currentSum, totalPaths)
+            totalPaths = traverse(node.right, currentSum, totalPaths)
+            return totalPaths
+        if root is not None:
+            return traverse(root) + self.pathSum(root.left, targetSum) + self.pathSum(root.right, targetSum)
+        return 0

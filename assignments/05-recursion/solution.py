@@ -105,18 +105,19 @@ def k_combinations(l: list[int], k: int) -> list[list[int]]:
     returns a list with all possible combinations of k elements (the order doesn't matter).
     Example: for l = [1, 2, 3, 4] and k = 2 your function must return 
     [[1,2],[1,3],[1,4],[2,3],[2,4],[3,4]].
+    l = [1, 2, 3, 4, 5] k = 3
+    [1, 2, 3]
+    [1, 2, 4]
+    [1, 2, 5]
+    [2, 3, 4]
+    [2, 3, 5]
+    [3, 4, 5]
     """
-    if len(l) == k:
-        return [l]
 
     first = l[0]
     rest = l[1:]
 
-    combinations = k_combinations(rest, k)
-    for i in range()
-
-
-print(k_combinations([1, 2, 3, 4, 5, 6], 3))
+    result = k_combinations(rest, k)
 
 
 def all_strictly_increasing_sequences(k: int, n: int, **kwargs) -> list[list[int]]:
@@ -184,10 +185,7 @@ def create_pattern(n: int) -> list[int]:
 
     result = create_pattern(n-5)
 
-    result.insert(0, n)
-    result.append(n)
-
-    return result
+    return [n] + result + [n]
 
 
 print(create_pattern(16))
@@ -209,5 +207,12 @@ def find_middle_rec(head: LinkedListNode, n: int = 0) -> tuple[int, LinkedListNo
     # the number returned by the function will be used to count the nodes from right to left
     # TODO: Implement this function
 
-    last_node, end = find_middle_rec(head.next, n + 1)
-    return None, 0
+    if head is None:
+        return n, head
+
+    dist_from_end, middle = find_middle_rec(head.next, n + 1)
+
+    if n == dist_from_end // 2:
+        middle = head
+
+    return dist_from_end, middle

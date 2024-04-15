@@ -28,32 +28,55 @@ def compute_pond_sizes(land: list[list[int]]) -> list[int]:
     x_length = len(land[0])
     y_length = len(land)
 
-    print(land[1][0])
-
     visited = set()
     ponds = list()
 
     def check_neighbors(x: int, y: int, pond_size: int) -> int:
+        # right limit
+        has_right = x + 1 < x_length
+        has_left = x - 1 >= 0
+        has_up = y - 1 >= 0
+        has_down = y + 1 < y_length
         # à direita
-        if x + 1 < x_length and land[y][x + 1] == 0 and (x + 1, y) not in visited:
+        if has_right and land[y][x + 1] == 0 and (x + 1, y) not in visited:
             visited.add((x + 1, y))
             pond_size += 1
             pond_size = check_neighbors(x+1, y, pond_size)
         # abaixo
-        if y + 1 < y_length and land[y + 1][x] == 0 and (x, y + 1) not in visited:
+        if has_down and land[y + 1][x] == 0 and (x, y + 1) not in visited:
             visited.add((x, y+1))
             pond_size += 1
             pond_size = check_neighbors(x, y+1, pond_size)
-        # diagonal direita
-        if x + 1 < x_length and y + 1 < y_length and land[y+1][x+1] == 0 and (x + 1, y + 1) not in visited:
+        # diagonal direita abaixo
+        if has_right and has_down and land[y+1][x+1] == 0 and (x + 1, y + 1) not in visited:
             visited.add((x+1, y+1))
             pond_size += 1
             pond_size = check_neighbors(x+1, y+1, pond_size)
-        # diagonal esquerda
-        if x - 1 > 0 and y + 1 < y_length and land[y+1][x-1] == 0 and (x - 1, y + 1) not in visited:
+        # diagonal esquerda abaixo
+        if has_left and has_down and land[y+1][x-1] == 0 and (x - 1, y + 1) not in visited:
             visited.add((x-1, y+1))
             pond_size += 1
             pond_size = check_neighbors(x-1, y+1, pond_size)
+        # esquerda
+        if has_left and land[y][x-1] == 0 and (x - 1, y) not in visited:
+            visited.add((x-1, y))
+            pond_size += 1
+            pond_size = check_neighbors(x-1, y, pond_size)
+        # acima
+        if has_up and land[y - 1][x] == 0 and (x, y - 1) not in visited:
+            visited.add((x, y-1))
+            pond_size += 1
+            pond_size = check_neighbors(x, y - 1, pond_size)
+        # diagonal direita acima
+        if has_right and has_up and land[y-1][x+1] == 0 and (x + 1, y - 1) not in visited:
+            visited.add((x+1, y-1))
+            pond_size += 1
+            pond_size = check_neighbors(x+1, y-1, pond_size)
+        # diagonal esquerda acima
+        if has_left and has_up and land[y-1][x-1] == 0 and (x - 1, y - 1) not in visited:
+            visited.add((x-1, y-1))
+            pond_size += 1
+            pond_size = check_neighbors(x-1, y-1, pond_size)
         return pond_size
 
     for y in range(y_length):

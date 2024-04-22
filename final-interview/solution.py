@@ -5,6 +5,7 @@ class Solution:
     def hIndex(self, citations: List[int]) -> int:
         h_map = dict()
         max_citations = 0
+
         for n_citations in citations:
             h_map.setdefault(n_citations, 0)
             h_map[n_citations] += 1
@@ -20,3 +21,17 @@ class Solution:
                 return n_citations
 
         return 0
+
+    def hIndexRecursive(self, citations: List[int]) -> int:
+
+        citations = sorted(citations, reverse=True)
+
+        h = 0
+
+        for i in range(len(citations)):
+            if citations[i] > i:
+                h += 1
+            else:
+                break
+
+        return h

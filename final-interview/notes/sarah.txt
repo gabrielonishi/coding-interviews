@@ -1,0 +1,9 @@
+ - teve dificuldade de entender o significado de h-index, mas com exemplo enetendeu
+ - pareceu preocupada, mas começou a raciocinar rápido
+ - approach:
+     - calcular valor máximo de h a partir de quantas vezes pelo menos um paper foi citado
+     - a partir do valor máximo, ir descendo até encontrar quantas vezes teve um paper com citações iguais número de papers
+
+ - não teve a sacada do sorted
+ - fez uma solução mais complicada do que precisa ser
+ - não teve tempo de fazer a solução ótima

@@ -1,0 +1,16 @@
+Dificuldades:
+ - entender o conceito de h-index
+ - estratégia geral de como identificar o h-index
+ - comunicar como estava pensando
+ - transformar como estava resolvendo na lousa para um algoritimo
+ - conseguiu ter a ideia do sorting sozinha
+ - não conseguiu resolver a versão O(n), mas entendeu a explicação
+ - ficou muito presa no caso base (começando com 0 ou quando um próximo valor é maior do que o último)
+
+Gostou do problema
+
+Dicas utilizadas:
+ - 2, 3
+ - Dica extra: o que o primeiro valor do sort representa
+
+

@@ -13,6 +13,7 @@ Even better if you use Sphinx-style markup
 """
 
 
+# With Sphinx style
 def calculate_area(radius):
     """
     Calculate the area of a circle.
@@ -29,3 +30,33 @@ def calculate_area(radius):
         raise ValueError("Radius cannot be negative")
     else:
         return 3.14159 * radius ** 2
+
+
+# Without Sphinx style
+def calculate_area(radius):
+    """
+    Calculate the area of a circle.
+
+    Args:
+        radius (float): The radius of the circle
+
+    Returns:
+        float: The area of the circle
+
+    Examples:
+        >>> calculate_area(5)
+            78.53975
+        >>> calculate_area(4.2)
+            55.4176476
+
+    Raises:
+        ValueError: If the radius is negative
+    """
+    if radius < 0:
+        raise ValueError("Radius cannot be negative")
+    else:
+        return 3.14159 * radius ** 2
+
+
+print(calculate_area(5))
+print(calculate_area(4.2))

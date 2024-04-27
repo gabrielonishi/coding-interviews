@@ -8,17 +8,29 @@ because we calculate both fibo(n - 1) and fibo(n - 2) subsequentely.
 For example, for fibo(5), the recursion stack would look like this:
 
 Stack:
- - fibo(4)
- - fibo(3)
- - fibo(2) #returns
- - fibo(3)
- - fibo(2) #returns
+ - 1: fibo(5)
+ - 2: fibo(4) # left 1
+ - 3: fibo(3) # left 2
+ - 4: fibo(2) # left 3
+ return
+ - 4: fibo(1) # right 3
+ return
+ - 4: fibo(2) # right 2
+ return
+ - 5: fibo(3) # right 1
+ - 6: fibo(2) # left 5
+ return
+ - 6: fibo(1) # right 5
+ return
+ 
+The time complexity of fibo(n) is O(2^n) with constant space
+The time complexity of fibo_memo(n) is O(n) with O(n) space complexity
 
 """
 
 import time
 
-n = 38
+n = 30
 
 
 def fibo(n: int) -> int:
@@ -41,7 +53,7 @@ def fibo(n: int) -> int:
 
 
 start_time = time.time()
-print(fibo(n))
+# print(fibo(n))
 print(f"Time to run fibo({n}): {(time.time() - start_time):.4f}s")
 
 

@@ -1,0 +1,9 @@
+não teve dúvidas sobre h-index
+pegou a sacada de fazer o sort direto
+usou muito a palavra "sorteando" para ordenado, o que deixou as coisas meio confusas
+
+conseguiu resolver usando sort dentro de 10 min
+
+follow-up: 
+ - ficou confuso quando falei que da pra fazer sem o sort
+ - matou rápido a ideia de lista ordenada
